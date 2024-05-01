@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delete Product</title>
+    <!-- Internal CSS for styling -->
+    <style>
+        body {
+            background-color: #eee; /* Light background color for readability */
+            font-family: Arial, sans-serif; /* Consistent font family */
+            color: #333; /* Dark text color for contrast */
+            padding: 20px; /* Padding around the body content */
+            margin: 0; /* No margin */
+        }
+
+        .container {
+            max-width: 400px; /* Set a max width for the form container */
+            margin: 50px auto; /* Center the container */
+            padding: 20px; /* Padding inside the container */
+            background: white; /* White background for the form */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        label {
+            font-weight: bold; /* Make label text bold */
+        }
+
+        input[type="text"] {
+            width: 100%; /* Make input field full width */
+            padding: 10px; /* Padding inside the input */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            box-sizing: border-box; /* Ensure consistent box model */
+        }
+
+        input[type="submit"] {
+            background-color: #dc3545; /* Red background for delete button */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding around the button */
+            cursor: pointer; /* Change cursor on hover */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+
+        /* Simple message display, if needed */
+        .message {
+            text-align: center; /* Center align text */
+            font-size: 1.2em; /* Slightly larger font */
+            color: #28a745; /* Green color for success messages */
+        }
+    </style>
+</head>
+<body>
+    <!-- Display message if available -->
+    <div th:if="${message}" class="message" th:text="${message}"></div>
+
+    <div class="container">
+        <!-- Delete product form -->
+        <form th:action="@{/delete/{id}(id=${id})}" method="post">
+            <div>
+                <label for="product-name">Name of the Product:</label>
+                <input type="text" id="product-name" name="name" th:value="${product.name}" readonly /> <!-- Read-only to prevent changes -->
+            </div>
+            <div>
+                <input type="submit" value="Delete" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>

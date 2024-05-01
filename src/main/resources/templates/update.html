@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Product</title>
+
+    <!-- Internal CSS -->
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5; /* Light background color for readability */
+            color: #333; /* Dark text color */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container for the form */
+        .container {
+            max-width: 600px;
+            margin: 50px auto; /* Center the container */
+            padding: 20px; /* Add padding around content */
+            background: white; /* White background for the form */
+            border: 1px solid #ddd; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        /* Form elements */
+        .form-group {
+            margin-bottom: 15px; /* Space between form groups */
+        }
+
+        label {
+            font-weight: bold; /* Bold labels */
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%; /* Full-width inputs */
+            padding: 10px; /* Padding inside inputs */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            box-sizing: border-box; /* Ensure consistent box model */
+        }
+
+        /* Button styling */
+        input[type="submit"] {
+            background-color: #007bff; /* Blue background */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 10px 20px; /* Padding around the button */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Change cursor on hover */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Display message if available -->
+        <div th:if="${message}" th:text="${message}"></div>
+
+        <!-- Update product form -->
+        <form th:action="@{/update/{id}(id=${id})}" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" th:value="${product.name}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" th:value="${product.description}" />
+            </div>
+
+            <div class="form-group">
+                <label for="expirydate">Expiry Date:</label>
+                <input type="date" id="expirydate" name="expirydate" th:value="${product.expirydate}" />
+            </div>
+
+            <div class="form-group">
+                <label for="MRP">MRP:</label>
+                <input type="number" step="0.01" id="MRP" name="MRP" th:value="${product.MRP}" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Update" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
